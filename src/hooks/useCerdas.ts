@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Cerda, EstadoCerda } from '@/types/database';
 import { toast } from 'sonner';
+import { logError } from '@/lib/logger';
 
 export function useCerdas(filters?: {
   estado?: EstadoCerda;
@@ -74,8 +75,8 @@ export function useCreateCerda() {
       queryClient.invalidateQueries({ queryKey: ['cerdas'] });
       toast.success('Cerda registrada correctamente');
     },
-    onError: (error: any) => {
-      console.error('Error creating cerda:', error);
+    onError: (error: Error & { message?: string }) => {
+      logError('useCerdas.createCerda', error);
       if (error.message?.includes('unique')) {
         toast.error('El código de cerda ya existe');
       } else {
@@ -106,7 +107,7 @@ export function useUpdateCerda() {
       toast.success('Cerda actualizada correctamente');
     },
     onError: (error) => {
-      console.error('Error updating cerda:', error);
+      logError('useCerdas.updateCerda', error);
       toast.error('Error al actualizar la cerda');
     }
   });

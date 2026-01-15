@@ -15,18 +15,27 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+function LoadingSpinner() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    </div>
+  );
+}
+
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
   
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
-  
+  if (loading) return <LoadingSpinner />;
   if (!user) return <Navigate to="/auth" replace />;
+  return <>{children}</>;
+}
+
+function AdminRoute({ children }: { children: React.ReactNode }) {
+  const { isAdmin, loading } = useAuth();
+  
+  if (loading) return <LoadingSpinner />;
+  if (!isAdmin) return <Navigate to="/" replace />;
   return <>{children}</>;
 }
 
@@ -46,7 +55,7 @@ function AppRoutes() {
       <Route path="/auth" element={user ? <Navigate to="/" replace /> : <Auth />} />
       <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/cerdas" element={<ProtectedRoute><ListaCerdas /></ProtectedRoute>} />
-      <Route path="/nueva-cerda" element={<ProtectedRoute><NuevaCerda /></ProtectedRoute>} />
+      <Route path="/nueva-cerda" element={<ProtectedRoute><AdminRoute><NuevaCerda /></AdminRoute></ProtectedRoute>} />
       <Route path="/incidencias" element={<ProtectedRoute><Incidencias /></ProtectedRoute>} />
       <Route path="/reportes" element={<ProtectedRoute><Reportes /></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
