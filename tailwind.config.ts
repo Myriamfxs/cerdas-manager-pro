@@ -20,17 +20,14 @@ export default {
   	extend: {
   		fontFamily: {
   			sans: [
-  				'DM Sans',
+  				'Inter',
   				'ui-sans-serif',
   				'system-ui',
-  				'-apple-system',
-  				'BlinkMacSystemFont',
-  				'Segoe UI',
-  				'Roboto',
-  				'Helvetica Neue',
-  				'Arial',
-  				'Noto Sans',
-  				'sans-serif'
+  				'sans-serif',
+  				'Apple Color Emoji',
+  				'Segoe UI Emoji',
+  				'Segoe UI Symbol',
+  				'Noto Color Emoji'
   			],
   			display: [
   				'Outfit',
@@ -38,7 +35,6 @@ export default {
   				'sans-serif'
   			],
   			serif: [
-  				'Crimson Pro',
   				'ui-serif',
   				'Georgia',
   				'Cambria',
@@ -47,7 +43,6 @@ export default {
   				'serif'
   			],
   			mono: [
-  				'SF Mono',
   				'ui-monospace',
   				'SFMono-Regular',
   				'Menlo',
