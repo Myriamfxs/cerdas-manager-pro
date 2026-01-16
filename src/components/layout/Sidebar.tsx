@@ -7,6 +7,7 @@ import {
   FileText, 
   Settings,
   Users,
+  Beef,
   LogOut,
   Menu,
   X
@@ -22,6 +23,7 @@ const navItems = [
   { path: '/nueva-cerda', icon: Plus, label: 'Nueva Cerda', adminOnly: true },
   { path: '/incidencias', icon: AlertTriangle, label: 'Incidencias' },
   { path: '/reportes', icon: FileText, label: 'Reportes' },
+  { path: '/verracos', icon: Beef, label: 'Verracos', adminOnly: true },
   { path: '/usuarios', icon: Users, label: 'Usuarios', adminOnly: true },
   { path: '/configuracion', icon: Settings, label: 'Configuración', adminOnly: true },
 ];

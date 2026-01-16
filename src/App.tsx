@@ -12,6 +12,7 @@ import NuevaCerda from "./pages/NuevaCerda";
 import Incidencias from "./pages/Incidencias";
 import Reportes from "./pages/Reportes";
 import GestionUsuarios from "./pages/GestionUsuarios";
+import GestionVerracos from "./pages/GestionVerracos";
 import Configuracion from "./pages/Configuracion";
 import NotFound from "./pages/NotFound";
 
@@ -61,6 +62,7 @@ function AppRoutes() {
       <Route path="/incidencias" element={<ProtectedRoute><Incidencias /></ProtectedRoute>} />
       <Route path="/reportes" element={<ProtectedRoute><Reportes /></ProtectedRoute>} />
       <Route path="/usuarios" element={<ProtectedRoute><AdminRoute><GestionUsuarios /></AdminRoute></ProtectedRoute>} />
+      <Route path="/verracos" element={<ProtectedRoute><AdminRoute><GestionVerracos /></AdminRoute></ProtectedRoute>} />
       <Route path="/configuracion" element={<ProtectedRoute><AdminRoute><Configuracion /></AdminRoute></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
