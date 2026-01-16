@@ -5,10 +5,11 @@ import { EstadoBadge } from '@/components/ui/EstadoBadge';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search, Plus, AlertTriangle, Eye } from 'lucide-react';
+import { Search, Plus, AlertTriangle, Eye, Heart } from 'lucide-react';
 import { ESTADO_LABELS, EstadoCerda } from '@/types/database';
 import { Link } from 'react-router-dom';
 import { IncidenciaModal } from '@/components/modals/IncidenciaModal';
+import { CubricionModal } from '@/components/modals/CubricionModal';
 import { format } from 'date-fns';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -16,6 +17,7 @@ export default function ListaCerdas() {
   const [search, setSearch] = useState('');
   const [estadoFilter, setEstadoFilter] = useState<string>('all');
   const [incidenciaModal, setIncidenciaModal] = useState<{ open: boolean; cerda: any | null }>({ open: false, cerda: null });
+  const [cubricionModal, setCubricionModal] = useState<{ open: boolean; cerda: any | null }>({ open: false, cerda: null });
   const { isAdmin } = useAuth();
 
   const { data: cerdas, isLoading, refetch } = useCerdas({
@@ -88,11 +90,24 @@ export default function ListaCerdas() {
                       </td>
                       <td>
                         <div className="flex gap-2">
-                          <Button variant="ghost" size="sm" onClick={() => setIncidenciaModal({ open: true, cerda })}>
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            onClick={() => setCubricionModal({ open: true, cerda })}
+                            title="Registrar cubrición"
+                          >
+                            <Heart className="w-4 h-4 text-pink-500" />
+                          </Button>
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            onClick={() => setIncidenciaModal({ open: true, cerda })}
+                            title="Registrar incidencia"
+                          >
                             <AlertTriangle className="w-4 h-4" />
                           </Button>
                           <Link to={`/cerda/${cerda.id}`}>
-                            <Button variant="ghost" size="sm"><Eye className="w-4 h-4" /></Button>
+                            <Button variant="ghost" size="sm" title="Ver ficha"><Eye className="w-4 h-4" /></Button>
                           </Link>
                         </div>
                       </td>
@@ -114,6 +129,16 @@ export default function ListaCerdas() {
           onClose={() => setIncidenciaModal({ open: false, cerda: null })}
           cerdaId={incidenciaModal.cerda.id}
           cerdaCodigo={incidenciaModal.cerda.codigo}
+          onSuccess={() => refetch()}
+        />
+      )}
+
+      {cubricionModal.cerda && (
+        <CubricionModal
+          open={cubricionModal.open}
+          onClose={() => setCubricionModal({ open: false, cerda: null })}
+          cerdaId={cubricionModal.cerda.id}
+          cerdaCodigo={cubricionModal.cerda.codigo}
           onSuccess={() => refetch()}
         />
       )}
