@@ -6,6 +6,7 @@ import {
   AlertTriangle, 
   FileText, 
   Settings,
+  Users,
   LogOut,
   Menu,
   X
@@ -21,6 +22,8 @@ const navItems = [
   { path: '/nueva-cerda', icon: Plus, label: 'Nueva Cerda', adminOnly: true },
   { path: '/incidencias', icon: AlertTriangle, label: 'Incidencias' },
   { path: '/reportes', icon: FileText, label: 'Reportes' },
+  { path: '/usuarios', icon: Users, label: 'Usuarios', adminOnly: true },
+  { path: '/configuracion', icon: Settings, label: 'Configuración', adminOnly: true },
 ];
 
 export function Sidebar() {

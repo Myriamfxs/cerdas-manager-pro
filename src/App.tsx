@@ -11,6 +11,8 @@ import ListaCerdas from "./pages/ListaCerdas";
 import NuevaCerda from "./pages/NuevaCerda";
 import Incidencias from "./pages/Incidencias";
 import Reportes from "./pages/Reportes";
+import GestionUsuarios from "./pages/GestionUsuarios";
+import Configuracion from "./pages/Configuracion";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -58,6 +60,8 @@ function AppRoutes() {
       <Route path="/nueva-cerda" element={<ProtectedRoute><AdminRoute><NuevaCerda /></AdminRoute></ProtectedRoute>} />
       <Route path="/incidencias" element={<ProtectedRoute><Incidencias /></ProtectedRoute>} />
       <Route path="/reportes" element={<ProtectedRoute><Reportes /></ProtectedRoute>} />
+      <Route path="/usuarios" element={<ProtectedRoute><AdminRoute><GestionUsuarios /></AdminRoute></ProtectedRoute>} />
+      <Route path="/configuracion" element={<ProtectedRoute><AdminRoute><Configuracion /></AdminRoute></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
