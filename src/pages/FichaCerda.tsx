@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { IncidenciaModal } from '@/components/modals/IncidenciaModal';
 import { CubricionModal } from '@/components/modals/CubricionModal';
 import { PartoModal } from '@/components/modals/PartoModal';
+import { DesteteModal } from '@/components/modals/DesteteModal';
 import { EditarEventoModal } from '@/components/modals/EditarEventoModal';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -28,6 +29,7 @@ export default function FichaCerda() {
   const [incidenciaModal, setIncidenciaModal] = useState(false);
   const [cubricionModal, setCubricionModal] = useState(false);
   const [partoModal, setPartoModal] = useState(false);
+  const [desteteModal, setDesteteModal] = useState(false);
   const [editEventoModal, setEditEventoModal] = useState(false);
   const [selectedEvento, setSelectedEvento] = useState<{
     id: string;
@@ -139,12 +141,15 @@ export default function FichaCerda() {
               {cerda.nombre && <p className="text-muted-foreground">{cerda.nombre}</p>}
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Button variant="outline" onClick={() => setCubricionModal(true)}>
               <Heart className="w-4 h-4 mr-2 text-pink-500" />Cubrición
             </Button>
             <Button variant="outline" onClick={() => setPartoModal(true)}>
               <Baby className="w-4 h-4 mr-2 text-blue-500" />Parto
+            </Button>
+            <Button variant="outline" onClick={() => setDesteteModal(true)}>
+              <Activity className="w-4 h-4 mr-2 text-green-500" />Destete
             </Button>
             <Button variant="outline" onClick={() => setIncidenciaModal(true)}>
               <AlertTriangle className="w-4 h-4 mr-2" />Incidencia
@@ -377,6 +382,14 @@ export default function FichaCerda() {
       <PartoModal
         open={partoModal}
         onClose={() => setPartoModal(false)}
+        cerdaId={cerda.id}
+        cerdaCodigo={cerda.codigo}
+        onSuccess={refetchAll}
+      />
+
+      <DesteteModal
+        open={desteteModal}
+        onClose={() => setDesteteModal(false)}
         cerdaId={cerda.id}
         cerdaCodigo={cerda.codigo}
         onSuccess={refetchAll}
