@@ -26,6 +26,7 @@ export interface Cerda {
   estado: EstadoCerda;
   fecha_alta: string | null;
   fecha_nacimiento: string | null;
+  fecha_baja: string | null;
   paridad: number;
   origen: string | null;
   nave: string | null;
@@ -33,7 +34,7 @@ export interface Cerda {
     nacidos_vivos: number;
     destetados: number;
     viabilidad: number;
-  };
+  } | null;
   ultima_incidencia_fecha: string | null;
   activa: boolean;
   created_at: string;
