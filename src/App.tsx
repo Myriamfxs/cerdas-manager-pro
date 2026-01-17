@@ -8,6 +8,7 @@ import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import ListaCerdas from "./pages/ListaCerdas";
+import FichaCerda from "./pages/FichaCerda";
 import NuevaCerda from "./pages/NuevaCerda";
 import Incidencias from "./pages/Incidencias";
 import Reportes from "./pages/Reportes";
@@ -58,6 +59,7 @@ function AppRoutes() {
       <Route path="/auth" element={user ? <Navigate to="/" replace /> : <Auth />} />
       <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/cerdas" element={<ProtectedRoute><ListaCerdas /></ProtectedRoute>} />
+      <Route path="/cerda/:id" element={<ProtectedRoute><FichaCerda /></ProtectedRoute>} />
       <Route path="/nueva-cerda" element={<ProtectedRoute><AdminRoute><NuevaCerda /></AdminRoute></ProtectedRoute>} />
       <Route path="/incidencias" element={<ProtectedRoute><Incidencias /></ProtectedRoute>} />
       <Route path="/reportes" element={<ProtectedRoute><Reportes /></ProtectedRoute>} />
