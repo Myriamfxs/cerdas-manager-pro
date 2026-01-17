@@ -35,7 +35,7 @@ export function useCerdas(filters?: {
       const { data, error } = await query;
       
       if (error) throw error;
-      return data as Cerda[];
+      return data as unknown as Cerda[];
     }
   });
 }
@@ -51,7 +51,7 @@ export function useCerda(id: string) {
         .maybeSingle();
 
       if (error) throw error;
-      return data as Cerda | null;
+      return data as unknown as Cerda | null;
     },
     enabled: !!id
   });
