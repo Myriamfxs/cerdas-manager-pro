@@ -15,7 +15,6 @@ import Reportes from "./pages/Reportes";
 import GestionUsuarios from "./pages/GestionUsuarios";
 import GestionVerracos from "./pages/GestionVerracos";
 import Configuracion from "./pages/Configuracion";
-import ConsultaEventos from "./pages/ConsultaEventos";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -64,7 +63,6 @@ function AppRoutes() {
       <Route path="/nueva-cerda" element={<ProtectedRoute><AdminRoute><NuevaCerda /></AdminRoute></ProtectedRoute>} />
       <Route path="/incidencias" element={<ProtectedRoute><Incidencias /></ProtectedRoute>} />
       <Route path="/reportes" element={<ProtectedRoute><Reportes /></ProtectedRoute>} />
-      <Route path="/consulta-eventos" element={<ProtectedRoute><ConsultaEventos /></ProtectedRoute>} />
       <Route path="/usuarios" element={<ProtectedRoute><AdminRoute><GestionUsuarios /></AdminRoute></ProtectedRoute>} />
       <Route path="/verracos" element={<ProtectedRoute><AdminRoute><GestionVerracos /></AdminRoute></ProtectedRoute>} />
       <Route path="/configuracion" element={<ProtectedRoute><AdminRoute><Configuracion /></AdminRoute></ProtectedRoute>} />

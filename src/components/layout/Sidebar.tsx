@@ -10,8 +10,7 @@ import {
   Beef,
   LogOut,
   Menu,
-  X,
-  CalendarSearch
+  X
 } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
@@ -23,7 +22,6 @@ const navItems = [
   { path: '/cerdas', icon: PiggyBank, label: 'Lista Cerdas' },
   { path: '/nueva-cerda', icon: Plus, label: 'Nueva Cerda', adminOnly: true },
   { path: '/incidencias', icon: AlertTriangle, label: 'Incidencias' },
-  { path: '/consulta-eventos', icon: CalendarSearch, label: 'Consulta Eventos' },
   { path: '/reportes', icon: FileText, label: 'Reportes' },
   { path: '/verracos', icon: Beef, label: 'Verracos', adminOnly: true },
   { path: '/usuarios', icon: Users, label: 'Usuarios', adminOnly: true },

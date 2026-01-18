@@ -22,7 +22,6 @@ interface VerracoForm {
   nombre: string;
   raza: string;
   activo: boolean;
-  fecha_baja: string;
 }
 
 const emptyForm: VerracoForm = {
@@ -30,7 +29,6 @@ const emptyForm: VerracoForm = {
   nombre: '',
   raza: '',
   activo: true,
-  fecha_baja: '',
 };
 
 export default function GestionVerracos() {
@@ -106,7 +104,6 @@ export default function GestionVerracos() {
         nombre: verraco.nombre || '',
         raza: verraco.raza || '',
         activo: verraco.activo ?? true,
-        fecha_baja: (verraco as any).fecha_baja || '',
       });
     } else {
       setEditingVerraco(null);
@@ -207,16 +204,6 @@ export default function GestionVerracos() {
                       id="activo"
                       checked={form.activo}
                       onCheckedChange={(checked) => setForm({ ...form, activo: checked })}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="fecha_baja">Fecha de Baja</Label>
-                    <Input
-                      id="fecha_baja"
-                      type="date"
-                      value={form.fecha_baja}
-                      onChange={(e) => setForm({ ...form, fecha_baja: e.target.value })}
                     />
                   </div>
                 </div>
