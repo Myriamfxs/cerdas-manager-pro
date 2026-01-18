@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   ArrowLeft, Calendar, MapPin, Heart, AlertTriangle, 
-  Baby, Activity, Clock, CheckCircle2, XCircle 
+  Baby, Activity, Clock, CheckCircle2, XCircle, Pencil 
 } from 'lucide-react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
@@ -17,6 +17,9 @@ import { TIPO_EVENTO_LABELS, TipoEvento } from '@/types/database';
 import { useState } from 'react';
 import { IncidenciaModal } from '@/components/modals/IncidenciaModal';
 import { CubricionModal } from '@/components/modals/CubricionModal';
+import { EditarCerdaModal } from '@/components/modals/EditarCerdaModal';
+import { PartoModal } from '@/components/modals/PartoModal';
+import { DesteteModal } from '@/components/modals/DesteteModal';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function FichaCerda() {
@@ -25,6 +28,9 @@ export default function FichaCerda() {
   const { user } = useAuth();
   const [incidenciaModal, setIncidenciaModal] = useState(false);
   const [cubricionModal, setCubricionModal] = useState(false);
+  const [editarModal, setEditarModal] = useState(false);
+  const [partoModal, setPartoModal] = useState(false);
+  const [desteteModal, setDesteteModal] = useState(false);
 
   const { data: cerda, isLoading: loadingCerda, refetch: refetchCerda } = useQuery({
     queryKey: ['cerda', id],
@@ -128,11 +134,20 @@ export default function FichaCerda() {
               {cerda.nombre && <p className="text-muted-foreground">{cerda.nombre}</p>}
             </div>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={() => setCubricionModal(true)}>
+          <div className="flex gap-2 flex-wrap">
+            <Button variant="outline" size="sm" onClick={() => setEditarModal(true)}>
+              <Pencil className="w-4 h-4 mr-2" />Editar
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => setCubricionModal(true)}>
               <Heart className="w-4 h-4 mr-2 text-pink-500" />Cubrición
             </Button>
-            <Button variant="outline" onClick={() => setIncidenciaModal(true)}>
+            <Button variant="outline" size="sm" onClick={() => setPartoModal(true)}>
+              <Baby className="w-4 h-4 mr-2 text-blue-500" />Parto
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => setDesteteModal(true)}>
+              <Activity className="w-4 h-4 mr-2 text-green-500" />Destete
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => setIncidenciaModal(true)}>
               <AlertTriangle className="w-4 h-4 mr-2" />Incidencia
             </Button>
           </div>
@@ -338,6 +353,30 @@ export default function FichaCerda() {
       <CubricionModal
         open={cubricionModal}
         onClose={() => setCubricionModal(false)}
+        cerdaId={cerda.id}
+        cerdaCodigo={cerda.codigo}
+        onSuccess={refetchAll}
+      />
+
+      <EditarCerdaModal
+        open={editarModal}
+        onClose={() => setEditarModal(false)}
+        cerda={cerda}
+        onSuccess={refetchAll}
+      />
+
+      <PartoModal
+        open={partoModal}
+        onClose={() => setPartoModal(false)}
+        cerdaId={cerda.id}
+        cerdaCodigo={cerda.codigo}
+        paridad={cerda.paridad || 0}
+        onSuccess={refetchAll}
+      />
+
+      <DesteteModal
+        open={desteteModal}
+        onClose={() => setDesteteModal(false)}
         cerdaId={cerda.id}
         cerdaCodigo={cerda.codigo}
         onSuccess={refetchAll}
