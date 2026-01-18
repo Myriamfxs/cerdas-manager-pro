@@ -22,7 +22,6 @@ export type Database = {
           created_by: string | null
           estado: Database["public"]["Enums"]["estado_cerda"] | null
           fecha_alta: string | null
-          fecha_baja: string | null
           fecha_nacimiento: string | null
           id: string
           medios_historicos: Json | null
@@ -40,7 +39,6 @@ export type Database = {
           created_by?: string | null
           estado?: Database["public"]["Enums"]["estado_cerda"] | null
           fecha_alta?: string | null
-          fecha_baja?: string | null
           fecha_nacimiento?: string | null
           id?: string
           medios_historicos?: Json | null
@@ -58,7 +56,6 @@ export type Database = {
           created_by?: string | null
           estado?: Database["public"]["Enums"]["estado_cerda"] | null
           fecha_alta?: string | null
-          fecha_baja?: string | null
           fecha_nacimiento?: string | null
           id?: string
           medios_historicos?: Json | null
@@ -200,7 +197,6 @@ export type Database = {
           activo: boolean | null
           codigo: string
           created_at: string | null
-          fecha_baja: string | null
           id: string
           nombre: string | null
           raza: string | null
@@ -209,7 +205,6 @@ export type Database = {
           activo?: boolean | null
           codigo: string
           created_at?: string | null
-          fecha_baja?: string | null
           id?: string
           nombre?: string | null
           raza?: string | null
@@ -218,7 +213,6 @@ export type Database = {
           activo?: boolean | null
           codigo?: string
           created_at?: string | null
-          fecha_baja?: string | null
           id?: string
           nombre?: string | null
           raza?: string | null

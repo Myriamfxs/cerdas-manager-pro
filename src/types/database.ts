@@ -23,22 +23,21 @@ export interface Cerda {
   id: string;
   codigo: string;
   nombre: string | null;
-  estado: EstadoCerda | null;
+  estado: EstadoCerda;
   fecha_alta: string | null;
   fecha_nacimiento: string | null;
-  fecha_baja: string | null;
-  paridad: number | null;
+  paridad: number;
   origen: string | null;
   nave: string | null;
   medios_historicos: {
     nacidos_vivos: number;
     destetados: number;
     viabilidad: number;
-  } | null;
+  };
   ultima_incidencia_fecha: string | null;
-  activa: boolean | null;
-  created_at: string | null;
-  updated_at: string | null;
+  activa: boolean;
+  created_at: string;
+  updated_at: string;
   created_by: string | null;
 }
 
